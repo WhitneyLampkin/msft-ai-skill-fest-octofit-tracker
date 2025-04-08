@@ -132,3 +132,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 CORS_ALLOW_HEADERS = ["content-type", "authorization", "x-csrftoken"]
+
+# Add the codespace Django REST API endpoint suffix
+CODESPACE_API_SUFFIX = '-8000.app.github.dev'
