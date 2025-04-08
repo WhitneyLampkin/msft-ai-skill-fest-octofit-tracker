@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework.decorators import api_view
 from .models import User, Team, Activity, Leaderboard, Workout
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 
@@ -24,12 +25,13 @@ class WorkoutViewSet(viewsets.ModelViewSet):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
 
+@api_view(['GET'])
 def api_root(request, format=None):
-    codespace_url = "https://effective-fortnight-4jpjx55x94r2qrrw-8000.app.github.dev"
+    base_url = 'https://effective-fortnight-4jpjx55x94r2qrrw-8000.app.github.dev/'
     return Response({
-        'users': f"{codespace_url}{reverse('user-list', request=request, format=format)}",
-        'teams': f"{codespace_url}{reverse('team-list', request=request, format=format)}",
-        'activities': f"{codespace_url}{reverse('activity-list', request=request, format=format)}",
-        'leaderboard': f"{codespace_url}{reverse('leaderboard-list', request=request, format=format)}",
-        'workouts': f"{codespace_url}{reverse('workout-list', request=request, format=format)}",
+        'users': base_url + 'api/users/?format=api',
+        'teams': base_url + 'api/teams/?format=api',
+        'activities': base_url + 'api/activities/?format=api',
+        'leaderboard': base_url + 'api/leaderboard/?format=api',
+        'workouts': base_url + 'api/workouts/?format=api'
     })
