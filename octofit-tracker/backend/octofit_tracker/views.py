@@ -25,10 +25,11 @@ class WorkoutViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutSerializer
 
 def api_root(request, format=None):
+    codespace_url = "https://effective-fortnight-4jpjx55x94r2qrrw-8000.app.github.dev"
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'teams': reverse('team-list', request=request, format=format),
-        'activities': reverse('activity-list', request=request, format=format),
-        'leaderboard': reverse('leaderboard-list', request=request, format=format),
-        'workouts': reverse('workout-list', request=request, format=format),
+        'users': f"{codespace_url}{reverse('user-list', request=request, format=format)}",
+        'teams': f"{codespace_url}{reverse('team-list', request=request, format=format)}",
+        'activities': f"{codespace_url}{reverse('activity-list', request=request, format=format)}",
+        'leaderboard': f"{codespace_url}{reverse('leaderboard-list', request=request, format=format)}",
+        'workouts': f"{codespace_url}{reverse('workout-list', request=request, format=format)}",
     })
